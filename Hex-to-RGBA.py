@@ -27,15 +27,15 @@ class HexToRgbaCommand(sublime_plugin.TextCommand):
         word = self.view.substr(word_region)
         re_hex_color = re.compile('#?([0-9a-fA-F]{3}([0-9a-fA-F]{3})?){1}$')
         if re_hex_color.match(word):
-            rgba = self.hex_to_rgba(word)   # this command returns four words in 4 table cells
+            rgba = self.hex_to_rgba(word)   # this command  four red  in 4 tuple
             
             # the default option
             # rgba_css = 'rgba(%s,%s,%s,%s)' % rgba
             
             # my customisations for corona sdk unit rgba color scheme
-            rgba_Ur = rgba[0]/255
-            rgba_Ug = rgba[1]/255
-            rgba_Ub = rgba[2]/255
+            rgba_Ur = round(rgba[0]/255,3)
+            rgba_Ug = round(rgba[1]/255,3)
+            rgba_Ub = round(rgba[2]/255,3)
 
             rgba_css = '%s,%s,%s,%s' % (rgba_Ur,rgba_Ug,rgba_Ub,rgba[3] )
             return rgba_css
